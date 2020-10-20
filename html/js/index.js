@@ -9,10 +9,10 @@ function splash() {
 
 }
 
-//splash()
+splash()
 
-// setTimeout(() => main(), 3000);
-main()
+setTimeout(() => main(), 3000);
+//main()
 function main() {
     const content = document.querySelector("#content");
     content.innerHTML = `
