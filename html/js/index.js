@@ -9,6 +9,16 @@ function splash() {
 
 }
 
+function loading() {
+    const mainContent = document.querySelector("#mainContent")
+
+    mainContent.innerHTML = `
+        <div class="bg-orange-500 rounded-full p-2 pointer-events-none">
+            <img class="h-8 animate-spin select-none" src="./img/Loading.svg" alt="loading">
+        </div>
+    `
+}
+
 splash()
 
 setTimeout(() => signIn(), 3000);
@@ -26,8 +36,8 @@ function signIn() {
                     <p class="text-white">doesn't have an account? <a href="#" class="text-orange-500 font-bold" onclick="signUp()">Sign Up</a></p>
                 </div>
             </nav>
-            <div class="flex justify-center items-center h-full">
-                <div class="p-6 bg-gray-700 rounded-lg w-full overflow-hidden sm:w-full md:w-2/4 lg:w-1/3 xl:w-1/4 mx-4">
+            <div class="flex justify-center items-center h-full" id="mainContent">
+                <div class="p-6 bg-gray-700 rounded-lg w-full overflow-hidden sm:w-full md:w-2/4 lg:w-2/5 xl:w-2/6 mx-4">
                     <h5 class="text-white font-bold text-2xl mt-4 mb-8">
                         Login
                     </h5>
@@ -105,8 +115,8 @@ function signUp() {
                     <p class="text-white">Have an account? <a href="#" class="text-orange-500 font-bold" onclick="signIn()">Sign In</a></p>
                 </div>
             </nav>
-            <div class="flex justify-center items-center h-full">
-                <div class="p-6 bg-gray-700 rounded-lg w-full overflow-hidden sm:w-full md:w-2/4 lg:w-1/3 xl:w-1/4 mx-4">
+            <div class="flex justify-center items-center h-full" id="mainContent">
+                <div class="p-6 bg-gray-700 rounded-lg w-full overflow-hidden sm:w-full md:w-2/4 lg:w-2/5 xl:w-2/6 mx-4">
                     <div class="flex flex-row justify-between items-center">
                         <h5 class="text-white font-bold text-2xl mt-4 mb-8">Sign Up</h5>
                         <div class="flex flex-row items-center">
@@ -191,8 +201,8 @@ function signUp() {
                     <label class="text-white mb-2 font-bold" for="password">password</label>
                     <input class="py-2 px-3 rounded bg-gray-800 border border-gray-900 text-gray-500 focus:text-white" type="password" id="paswword" placeholder="password">
                 </div>
-                <div class="mb-4 flex flex-col" id="emailCol">
-                    <label class="text-white mb-2 font-bold" for="confirmPassword">email</label>
+                <div class="mb-4 flex flex-col" id="confirmPassword">
+                    <label class="text-white mb-2 font-bold" for="confirmPassword">confirm password</label>
                     <input class="py-2 px-3 rounded bg-gray-800 border border-gray-900 text-gray-500 focus:text-white" type="password" id="confirmPassword" placeholder="comfirm password">
                 </div>
                 <div class="mb-10">
@@ -203,7 +213,7 @@ function signUp() {
                     </p>
                 </div>
                 <div class="flex items-center">
-                    <button class="w-full bg-orange-500 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="toDone">
+                    <button class="w-full bg-orange-500 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="toDone" onclick="toVerification()">
                         Sign In
                     </button>
                 </div>
@@ -212,4 +222,38 @@ function signUp() {
 
     })
 
+}
+
+function toVerification() {
+    loading()
+
+    setTimeout(() => verificationForm(),1000)
+}
+
+function verificationForm() {
+    const mainContent = document.querySelector("#mainContent")
+
+    mainContent.innerHTML = `
+        <div class="p-6 bg-gray-700 rounded-lg w-full overflow-hidden sm:w-full md:w-2/4 lg:w-2/5 xl:w-2/6 mx-4">
+            <h5 class="text-white font-bold text-2xl mt-4 mb-1">Verification</h5>
+            <p class="text-white text-xs mb-8">We have sent a verification code to your email</p>
+            <form>
+                <div class="mb-10 flex flex-col" id="verificationCol">
+                    <label class="text-white mb-2 font-bold" for="password">verification</label>
+                    <input class="py-2 px-3 rounded border bg-gray-800 border-gray-900 text-gray-500 focus:text-white" type="number" id="verify" placeholder="code">
+                </div>
+                <div class="flex items-center">
+                    <button class="w-full bg-orange-500 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="toDashboard()">verify</button>
+                </div>
+            </form>
+        </div>
+    `
+}
+
+function toDashboard() {
+    loading()
+
+    setTimeout(() => {
+        location.replace("http://127.0.0.1:8887/pages/dashboard.html")
+    }, 2000);
 }
